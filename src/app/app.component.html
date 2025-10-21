@@ -1,0 +1,27 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Simple Calorie Tracker</ion-title>
+      <ion-buttons slot="end">
+        <ion-button color="danger" fill="outline" (click)="openAddModal()">Add</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item *ngFor="let meal of meals$ | async">
+        <ion-label>
+          <h2>{{ meal.title }}</h2>
+          <p>{{ meal.date | date:'yyyy-MM-dd HH:mm' }}</p>
+        </ion-label>
+
+        <ion-buttons slot="end">
+          <ion-button color="danger" fill="outline" (click)="delete(meal.id)">
+            Delete
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-app>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Meal</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Title</ion-label>
+    <ion-input [(ngModel)]="title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Date & Time</ion-label>
+    <ion-datetime 
+        (ionChange)="date = $event.detail.value">
+    </ion-datetime>
+  </ion-item>
+
+  <ion-text color="medium">
+    Selected: {{ date | date:'yyyy-MM-dd HH:mm' }}
+  </ion-text>
+
+  <ion-button expand="full" (click)="save()">Save</ion-button>
+</ion-content>
