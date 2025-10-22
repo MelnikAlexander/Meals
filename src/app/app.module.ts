@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { mealReducer } from './store/meal.reducer';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { LoadMealsModalComponent } from './load-meals-modal/load-meals-modal.component';
 
 export function localStorageSyncReducer(reducer: any): any {
   return localStorageSync({ keys: ['meals'], rehydrate: true })(reducer);
@@ -19,7 +20,8 @@ export const metaReducers: MetaReducer<any>[] = [localStorageSyncReducer];
 @NgModule({
   declarations: [
     AppComponent,
-    AddMealModalComponent
+    AddMealModalComponent,
+    LoadMealsModalComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
 import { addMeal } from '../store/meal.actions';
+import { LoadMealsModalComponent } from '../load-meals-modal/load-meals-modal.component';
 
 @Component({
   selector: 'app-add-meal-modal',
@@ -16,6 +17,18 @@ export class AddMealModalComponent {
 
   close() {
     this.modalCtrl.dismiss();
+  }
+
+  async openMealList() {
+    const modal = await this.modalCtrl.create({
+      component: LoadMealsModalComponent
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      this.title = data;
+    }
   }
 
   save() {
