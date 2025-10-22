@@ -1,0 +1,26 @@
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--ion-background-color);
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+ion-item {
+  --inner-padding-end: 0;
+}
+
+ion-item button {
+  width: 100%;
+  text-align: left;
+}

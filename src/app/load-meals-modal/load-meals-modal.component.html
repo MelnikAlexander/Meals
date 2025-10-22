@@ -8,12 +8,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-searchbar [(ngModel)]="search" (ionInput)="onSearchChange($event)" placeholder="Search meals..."></ion-searchbar>
+
   <ion-list>
-    <ion-item
-      button
-      *ngFor="let meal of meals$ | async"
-      (click)="selectMeal(meal)">
-      <ion-label>{{ meal }}</ion-label>
+    <ion-item button *ngFor="let name of filteredTitles" (click)="selectMeal(name)">
+      {{ name }}
     </ion-item>
   </ion-list>
 </ion-content>

@@ -9,15 +9,17 @@
 
 <ion-content class="ion-padding">
 <ion-item>
-  <ion-label position="stacked">Title</ion-label>
-  <ion-input
-    [(ngModel)]="title"
-    (ionFocus)="openMealList()"></ion-input>
-</ion-item>
+    <ion-label position="stacked">Meal Title</ion-label>
+    <ion-input
+      [(ngModel)]="title"
+      placeholder="Enter meal name">
+    </ion-input>
+    <ion-button slot="end" (click)="openMealList()" size="small">Load Meals</ion-button>
+  </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Date & Time</ion-label>
-    <ion-datetime 
+    <ion-datetime
         (ionChange)="date = $event.detail.value">
     </ion-datetime>
   </ion-item>

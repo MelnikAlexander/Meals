@@ -1,0 +1,10 @@
+.suggestion-list {
+  position: absolute;
+  top: 110px;
+  width: calc(100% - 32px);
+  margin: 0 16px;
+  z-index: 10;
+  background: var(--ion-color-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

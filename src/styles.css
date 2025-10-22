@@ -2,3 +2,26 @@ html, body {
   height: 100%;
   margin: 0;
 }
+
+.meal-dropdown {
+  position: absolute;
+  background: var(--ion-color-light, #fff);
+  border: 1px solid var(--ion-color-medium, #ccc);
+  border-radius: 8px;
+  width: 90%;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  margin-top: 4px;
+}
+
+.meal-dropdown ion-item {
+  --background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.meal-dropdown ion-item:hover {
+  background: var(--ion-color-light-shade, #f2f2f2);
+}

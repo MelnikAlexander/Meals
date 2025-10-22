@@ -1,32 +1,37 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
 import { Meal } from '../meal.model';
 import { selectAllMeals } from '../store/meal.selectors';
 
 @Component({
   selector: 'app-load-meals-modal',
   templateUrl: './load-meals-modal.component.html',
+  styleUrls: ['./load-meals-modal.component.scss']
 })
 export class LoadMealsModalComponent {
-  meals$: Observable<string[]>;
+  allTitles: string[] = [];
+  filteredTitles: string[] = [];
+  search = '';
 
-  constructor(private store: Store, private modalCtrl: ModalController) {
-    this.meals$ = this.store.select(selectAllMeals).pipe(
-      map(meals =>
-        [...new Set(meals.map(m => m.title.trim()))]
-          .filter(Boolean)
-          .sort((a, b) => a.localeCompare(b))
-      )
-    );
+  constructor(private modalCtrl: ModalController, private store: Store) {
+    this.store.select(selectAllMeals).subscribe((meals: Meal[]) => {
+      const titles = meals.map(m => m.title);
+      this.allTitles = Array.from(new Set(titles)).sort((a, b) => a.localeCompare(b));
+      this.filteredTitles = [...this.allTitles];
+    });
   }
 
-  selectMeal(title: string) {
-    this.modalCtrl.dismiss(title);
+  onSearchChange(event: any) {
+    const value = event.target.value.toLowerCase();
+    this.filteredTitles = this.allTitles.filter(t => t.toLowerCase().includes(value));
+  }
+
+  selectMeal(name: string) {
+    this.modalCtrl.dismiss(name);
   }
 
   close() {
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss(null);
   }
 }
