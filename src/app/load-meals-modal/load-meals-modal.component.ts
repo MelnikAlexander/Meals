@@ -10,25 +10,26 @@ import { selectAllMeals } from '../store/meal.selectors';
   styleUrls: ['./load-meals-modal.component.scss']
 })
 export class LoadMealsModalComponent {
-  allTitles: string[] = [];
-  filteredTitles: string[] = [];
+  allMeals: Meal[] = [];
+  filteredMeals: Meal[] = [];
   search = '';
 
   constructor(private modalCtrl: ModalController, private store: Store) {
     this.store.select(selectAllMeals).subscribe((meals: Meal[]) => {
-      const titles = meals.map(m => m.title);
-      this.allTitles = Array.from(new Set(titles)).sort((a, b) => a.localeCompare(b));
-      this.filteredTitles = [...this.allTitles];
+      this.allMeals = [...meals];
+      this.filteredMeals = [...meals];
     });
   }
 
   onSearchChange(event: any) {
     const value = event.target.value.toLowerCase();
-    this.filteredTitles = this.allTitles.filter(t => t.toLowerCase().includes(value));
+    this.filteredMeals = this.allMeals.filter(m =>
+      m.title.toLowerCase().includes(value)
+    );
   }
 
-  selectMeal(name: string) {
-    this.modalCtrl.dismiss(name);
+  selectMeal(meal: Meal) {
+    this.modalCtrl.dismiss(meal);
   }
 
   close() {

@@ -8,18 +8,33 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-<ion-item>
-    <ion-label position="stacked">Meal Title</ion-label>
-    <ion-input
-      [(ngModel)]="title"
-      placeholder="Enter meal name">
-    </ion-input>
-    <ion-button slot="end" (click)="openMealList()" size="small">Load Meals</ion-button>
+<ion-item lines="none">
+    <div style="display: flex; align-items: flex-end; gap: 8px; width: 100%;">
+      <ion-item style="flex: 1;" lines="none">
+        <ion-label position="stacked">Meal Title</ion-label>
+        <ion-input
+          [(ngModel)]="title"
+          placeholder="Enter meal name"
+          (ionInput)="onTitleInput()">
+        </ion-input>
+      </ion-item>
+
+      <ion-item style="width: 90px;" lines="none">
+        <ion-label position="stacked">Calories</ion-label>
+        <ion-input
+          type="number"
+          [(ngModel)]="calories"
+          placeholder="100">
+        </ion-input>
+      </ion-item>
+
+      <ion-button (click)="openLoadMealsModal()" size="small">Load</ion-button>
+    </div>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Date & Time</ion-label>
-    <ion-datetime
+    <ion-datetime [max]="todayISO"
         (ionChange)="date = $event.detail.value">
     </ion-datetime>
   </ion-item>

@@ -9,17 +9,19 @@
   </ion-header>
 
   <ion-content class="ion-padding">
+    <div class="total-calories">
+      <strong>Total calories today: </strong>
+      <span>{{ todayCalories$ | async }}</span>
+    </div>
     <ion-list>
-      <ion-item *ngFor="let meal of meals$ | async">
+      <ion-item
+          *ngFor="let meal of meals$ | async">
         <ion-label>
-          <h2>{{ meal.title }}</h2>
+        <h2>{{ meal.title }} ({{ meal.calories }} kcal)   <ion-badge *ngIf="isToday(meal.date)">Today</ion-badge></h2>
           <p>{{ meal.date | date:'yyyy-MM-dd HH:mm' }}</p>
         </ion-label>
-
-        <ion-buttons slot="end">
-          <ion-button color="danger" fill="outline" (click)="delete(meal.id)">
-            Delete
-          </ion-button>
+        <ion-buttons slot="end" color="danger">
+          <ion-button color="danger" fill="outline" (click)="delete(meal.id)">Delete</ion-button>
         </ion-buttons>
       </ion-item>
     </ion-list>
